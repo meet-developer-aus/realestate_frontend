@@ -1,8 +1,8 @@
 <!-- /src/views/About.vue -->
 <template>
   <div>
-    <h2>Home Page</h2>
-    <p>This is the Home page content.</p>
+    <h2>New Homes Page</h2>
+    <p>This is the New Homes page content.</p>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 import { useMeta } from 'vue-meta'
 
 export default {
-  name: 'HomeView',
+  name: 'NewHomes',
    props: ['meta_info'],
    setup (props) {
     console.log('props.meta_info:', props.meta_info);

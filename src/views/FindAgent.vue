@@ -1,8 +1,8 @@
 <!-- /src/views/About.vue -->
 <template>
   <div>
-    <h2>Home Page</h2>
-    <p>This is the Home page content.</p>
+    <h2>Find Agent Page</h2>
+    <p>This is the Find Agent page content.</p>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 import { useMeta } from 'vue-meta'
 
 export default {
-  name: 'HomeView',
+  name: 'FindAgent',
    props: ['meta_info'],
    setup (props) {
     console.log('props.meta_info:', props.meta_info);

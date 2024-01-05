@@ -1,14 +1,29 @@
 <!-- /src/views/About.vue -->
 <template>
   <div>
-    <h2>About Page</h2>
-    <p>This is the About page content.</p>
+    <h2>About Us Page</h2>
+    <p>This is the About us page content.</p>
   </div>
 </template>
 
 <script>
+import { useMeta } from 'vue-meta'
+
 export default {
-  name: 'AboutView',
+  name: 'AboutUsView',
+   props: ['meta_info'],
+   setup (props) {
+    console.log('props.meta_info:', props.meta_info);
+   useMeta({
+         title: props.meta_info && props.meta_info.meta_title ? props.meta_info.meta_title : 'Default Title',
+      meta: 
+        {
+          // name: 'description',
+           meta_description: props.meta_info && props.meta_info.meta_description ? props.meta_info.meta_description : 'Default Description',
+        },
+      
+    });
+  }
 };
 </script>
 
