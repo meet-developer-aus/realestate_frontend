@@ -4,44 +4,52 @@
       <template v-slot:title="{ content }">{{ content ? `${content} | SITE_NAME` : `SITE_NAME` }}</template>
     </metainfo>
     <header />
-    <TopMenu @menu-item-selected="selectedMenuItem" />
+    <TopMenu  />
     <router-view :meta_info="selectedMenu"></router-view>
   </div>
 </template>
 
 <script>
 import { useMeta } from 'vue-meta';
-import { ref } from 'vue';
-
+import { watch, toRefs } from 'vue';
+import { useMenuStore } from './components/store/useMenuStore';
 export default {
   setup() {
-    const selectedMenu = ref(null);
+    
+     const selectedMenuStore = useMenuStore();
+     
+   const { selectedMenu } = toRefs(selectedMenuStore);
 
+    // Watch for changes in selectedMenuStore.selectedMenu
+    watch(() => selectedMenuStore.selectedMenu, (newValue) => {
+      // Update the local selectedMenu when the store's selectedMenu changes
+      selectedMenu.value = newValue;
+    });
     // Set up the meta information
      useMeta({
       title: 'SITE_NAME', // Set a default title
       htmlAttrs: { lang: 'en', amp: true },
-      meta: 
-        {
-          //  name: 'description',
-            meta_description: selectedMenu.value ? selectedMenu.value.meta_description || 'Default Description' : 'Default Description',
-       
-       },
+      meta: {
+        meta_description:
+          selectedMenuStore.selectedMenu?.meta_description || 'Default Description',
+      },
       
     });
 
 
     return {
-      selectedMenu,
+      selectedMenu,   selectedMenuStore,
     };
   },
   name: 'App',
   components: {},
   methods: {
-    selectedMenuItem(selectedMenu) {
-      // Assuming menuItems is not declared elsewhere, you should assign to selectedMenu
-      this.selectedMenu = selectedMenu;
-    },
+    // selectedMenuItem(selectedMenu) {
+    //   // Assuming menuItems is not declared elsewhere, you should assign to selectedMenu
+    //   this.selectedMenu = selectedMenu;
+    // },
+
+    
   },
 };
 </script>

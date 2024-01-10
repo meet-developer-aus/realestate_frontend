@@ -1,13 +1,15 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
-import About from '../views/About.vue';
-import Buy from '../views/Buy.vue';
-import Rent from '../views/Rent.vue';
-import Sold from '../views/Sold.vue';
-import NewHomes from '../views/NewHomes.vue';
-import FindAgent from '../views/FindAgent.vue';
-import News from '../views/News.vue';
+import Home from '../views/WebPages/Home.vue';
+import About from '../views/WebPages/About.vue';
+import Buy from '../views/WebPages/Buy.vue';
+import Rent from '../views/WebPages/Rent.vue';
+import Sold from '../views/WebPages/Sold.vue';
+import NewHomes from '../views/WebPages/NewHomes.vue';
+import FindAgent from '../views/WebPages/FindAgent.vue';
+import News from '../views/WebPages/News.vue';
+import Dashboard from '../components/Dashboard/DashboardApp.vue'
+
 const routes = [
   {
     path: '/',
@@ -51,6 +53,13 @@ const routes = [
     path: '/about',
     name: 'About', // Name for the route
     component: About,
+  },
+
+  {
+    path: '/dashboard/:userRole',
+    component: Dashboard,
+    name: 'dashboard',
+    props: true, // Pass route params as props to the component
   },
   // Add more routes as needed
 ];
